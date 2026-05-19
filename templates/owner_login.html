@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/portal.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="/" class="brand">
+                <span class="brand-mark"></span>
+                <span>
+                    <h1>कै. लक्ष्मणराव पाटील विद्यालय</h1>
+                    <p>Owner Panel</p>
+                </span>
+            </a>
+            <div class="top-links">
+                <a href="/">मुख्यपृष्ठ</a>
+                <a href="/faculty">शिक्षकवर्ग</a>
+                <a href="/alumni">माजी विद्यार्थी</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container">
+            <section class="hero-panel">
+                <h2>Owner Login</h2>
+                <p>वेबसाइटवरील शिक्षक आणि माजी विद्यार्थ्यांची माहिती add, update, delete करण्यासाठी login करा.</p>
+                <p class="muted">Username owner ला माहिती असेल. Password सुरक्षा कारणामुळे इथे दाखवलेला नाही.</p>
+            </section>
+
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+
+            <form class="form-card" method="post">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" value="{{ owner_username }}" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" required>
+                </div>
+                <button class="btn btn-primary" type="submit">Login करा</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

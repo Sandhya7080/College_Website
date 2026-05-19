@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Faculty placeholder portrait">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#F2D7B6"/>
+      <stop offset="0.58" stop-color="#F5E6CC"/>
+      <stop offset="1" stop-color="#C96A2B"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#bg)"/>
+  <circle cx="320" cy="184" r="90" fill="#3E2723"/>
+  <circle cx="320" cy="200" r="56" fill="#F0BB85"/>
+  <path d="M236 183c24-76 142-74 168 0-48-29-107-29-168 0z" fill="#3E2723"/>
+  <path d="M178 430c19-91 82-140 142-140s123 49 142 140z" fill="#4A2C1A"/>
+  <path d="M216 432h208c-17-50-52-82-104-82s-87 32-104 82z" fill="#B85C38"/>
+</svg>

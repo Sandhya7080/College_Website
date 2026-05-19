@@ -404,7 +404,20 @@
             gap: 25px;
         }
 
+        .result-slider {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scroll-behavior: smooth;
+        }
+
+        .result-slider::-webkit-scrollbar {
+            display: none;
+        }
+
         .result-card {
+            min-width: 260px;
             background: rgba(255, 248, 240, 0.65);
             padding: 25px;
             border-radius: 20px;
@@ -428,6 +441,14 @@
             margin-bottom: 20px;
             border: 3px solid #FACC15;
             box-shadow: 0 0 0 7px rgba(250, 204, 21, 0.12);
+            overflow: hidden;
+        }
+
+        .student-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .percentage {
@@ -469,6 +490,13 @@
             margin-bottom: 20px;
             position: relative;
             overflow: hidden;
+        }
+
+        .alumni-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         /* FOOTER */
@@ -699,8 +727,8 @@
                 <a href="#">प्रवेश</a>
                 <a href="#">सुविधा</a>
                 <a href="#">निकाल</a>
-                <a href="#">माजी विद्यार्थी</a>
-                <a href="#">शिक्षकवर्ग</a>
+                <a href="/alumni">माजी विद्यार्थी</a>
+                <a href="/faculty">शिक्षकवर्ग</a>
                 <a href="#">गॅलरी</a>
                 <a href="#">संपर्क</a>
             </nav>
@@ -757,7 +785,7 @@
             <div class="about-grid">
 
                 <div class="about-image">
-                    Saraswati Devi Image
+                    <img src="{{ url_for('static', filename='images/saraswati-mata.webp') }}" alt="Saraswati Devi">
                 </div>
 
                 <div class="about-content">
@@ -830,69 +858,21 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>इयत्ता १० वी निकाल २०२६</h2>
+                <h2>उच्च गुण मिळवलेले विद्यार्थी</h2>
                 <p>उत्कृष्ट यशाची परंपरा</p>
             </div>
 
-            <div class="results-grid">
-
-                <div class="result-card">
-                    <div class="student-photo"></div>
-                    <h3>विद्यार्थी नाव</h3>
-                    <div class="percentage">98.20%</div>
-                    <p>विद्यालय प्रथम</p>
-                </div>
-
-                <div class="result-card">
-                    <div class="student-photo"></div>
-                    <h3>विद्यार्थी नाव</h3>
-                    <div class="percentage">97.10%</div>
-                    <p>द्वितीय क्रमांक</p>
-                </div>
-
-                <div class="result-card">
-                    <div class="student-photo"></div>
-                    <h3>विद्यार्थी नाव</h3>
-                    <div class="percentage">96.45%</div>
-                    <p>तृतीय क्रमांक</p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-
-            <div class="section-title">
-                <h2>इयत्ता १२ वी निकाल २०२६</h2>
-                <p>विद्यार्थ्यांचे उज्ज्वल यश</p>
-            </div>
-
-            <div class="results-grid">
-
-                <div class="result-card">
-                    <div class="student-photo"></div>
-                    <h3>विद्यार्थी नाव</h3>
-                    <div class="percentage">95.80%</div>
-                    <p>विज्ञान शाखा</p>
-                </div>
-
-                <div class="result-card">
-                    <div class="student-photo"></div>
-                    <h3>विद्यार्थी नाव</h3>
-                    <div class="percentage">94.75%</div>
-                    <p>कला शाखा</p>
-                </div>
-
-                <div class="result-card">
-                    <div class="student-photo"></div>
-                    <h3>विद्यार्थी नाव</h3>
-                    <div class="percentage">93.60%</div>
-                    <p>वाणिज्य शाखा</p>
-                </div>
-
+            <div class="result-slider">
+                {% for score in scores %}
+                    <div class="result-card">
+                        <div class="student-photo">
+                            <img src="{{ score.photo or '/static/images/faculty-1.svg' }}" alt="{{ score.name }}">
+                        </div>
+                        <h3>{{ score.name }}</h3>
+                        <div class="percentage">{{ score.percentage }}</div>
+                        <p>{{ score.class_name }} | {{ score.rank }}</p>
+                    </div>
+                {% endfor %}
             </div>
 
         </div>
@@ -909,48 +889,20 @@
 
             <div class="alumni-slider">
 
-                <div class="alumni-card">
-                    <div class="alumni-image"></div>
-                    <h3>सचिन राऊत</h3>
-                    <p>शेतकरी व उद्योजक</p>
-                </div>
+                {% for student in alumni %}
+                    <div class="alumni-card">
+                        <div class="alumni-image">
+                            <img src="{{ student.photo or '/static/images/faculty-2.svg' }}" alt="{{ student.name }}">
+                        </div>
+                        <h3>{{ student.name }}</h3>
+                        <p>{{ student.profession }}</p>
+                    </div>
+                {% endfor %}
 
-                <div class="alumni-card">
-                    <div class="alumni-image"></div>
-                    <h3>माजी विद्यार्थी</h3>
-                    <p>सॉफ्टवेअर अभियंता</p>
-                </div>
+            </div>
 
-                <div class="alumni-card">
-                    <div class="alumni-image"></div>
-                    <h3>माजी विद्यार्थी</h3>
-                    <p>पोलीस अधिकारी</p>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-image"></div>
-                    <h3>माजी विद्यार्थी</h3>
-                    <p>प्राध्यापक</p>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-image"></div>
-                    <h3>माजी विद्यार्थी</h3>
-                    <p>डॉक्टर</p>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-image"></div>
-                    <h3>माजी विद्यार्थी</h3>
-                    <p>सरकारी अधिकारी</p>
-                </div>
-
-                <div class="alumni-card">
-                    <div class="alumni-image"></div>
-                    <h3>माजी विद्यार्थी</h3>
-                    <p>व्यवसायिक</p>
-                </div>
-
+            <div class="hero-buttons" style="justify-content: center; margin-top: 30px;">
+                <a href="/alumni" class="btn btn-secondary">सर्व माजी विद्यार्थी पहा</a>
             </div>
 
         </div>
@@ -1033,9 +985,9 @@
             revealObserver.observe(item);
         });
 
-        const slider = document.querySelector('.alumni-slider');
+        const sliders = document.querySelectorAll('.alumni-slider, .result-slider');
 
-        if (slider) {
+        sliders.forEach((slider) => {
             setInterval(() => {
                 slider.scrollBy({
                     left: 320,
@@ -1052,7 +1004,7 @@
                     });
                 }
             }, 3000);
-        }
+        });
 
     </script>
 

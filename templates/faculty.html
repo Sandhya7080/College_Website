@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शिक्षकवर्ग | कै. लक्ष्मणराव पाटील विद्यालय</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/portal.css">
+    <style>
+        .public-hero {
+            padding: 86px 0 34px;
+        }
+
+        .public-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .profile-card {
+            background: rgba(255, 248, 240, 0.76);
+            border: 1px solid rgba(139, 69, 19, 0.12);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 8px 22px rgba(62, 39, 35, 0.06);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            border-color: #C96A2B;
+            box-shadow: 0 16px 34px rgba(201, 106, 43, 0.16);
+        }
+
+        .profile-photo {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 18px;
+            background: #3E2723;
+            object-fit: cover;
+            margin-bottom: 18px;
+        }
+
+        .profile-card h3 {
+            color: #7B3F00;
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            display: inline-flex;
+            margin-top: 14px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(250, 204, 21, 0.18);
+            color: #8A4B18;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="/" class="brand">
+                <span class="brand-mark"></span>
+                <span>
+                    <h1>कै. लक्ष्मणराव पाटील विद्यालय</h1>
+                    <p>माझी शाळा माझा अभिमान</p>
+                </span>
+            </a>
+            <nav class="top-links">
+                <a href="/">मुख्यपृष्ठ</a>
+                <a href="/faculty">शिक्षकवर्ग</a>
+                <a href="/alumni">माजी विद्यार्थी</a>
+                <a href="/owner/login">Owner Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container">
+            <section class="hero-panel public-hero">
+                <h2>आमचा शिक्षकवर्ग</h2>
+                <p>विद्यार्थ्यांच्या ज्ञान, संस्कार आणि सर्वांगीण विकासासाठी समर्पित असलेले शिक्षक.</p>
+                <div class="actions">
+                    <a class="btn btn-secondary" href="/share/faculty">शिक्षक माहिती भरण्याचा link</a>
+                </div>
+            </section>
+
+            <section class="public-grid">
+                {% for teacher in faculty_items %}
+                    <article class="profile-card">
+                        <img class="profile-photo" src="{{ teacher.photo or '/static/images/faculty-1.svg' }}" alt="{{ teacher.name }}">
+                        <h3>{{ teacher.name }}</h3>
+                        <p class="muted">{{ teacher.description }}</p>
+                        <span class="tag">{{ teacher.subject }}</span>
+                    </article>
+                {% endfor %}
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

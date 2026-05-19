@@ -1,0 +1,22 @@
+[
+  {
+    "id": "fb93511b398240c3953107de8dd53a47",
+    "name": "वैशाली कनाडजे",
+    "class_name": "10",
+    "percentage": "90%",
+    "rank": "पहिला क्रमांक",
+    "photo": "/static/uploads/744ff26657aa4f3692f45a685a0a6d0d.png",
+    "visible": true,
+    "created_at": "2026-05-19T20:07:07"
+  },
+  {
+    "id": "92814ab2db5542d789cb92795146b7b0",
+    "name": "संध्या गायकवाड",
+    "class_name": "12",
+    "percentage": "90%",
+    "rank": "पहिला क्रमांक",
+    "photo": "/static/uploads/aacd78d2454248c0b611a510175cbe17.jpeg",
+    "visible": true,
+    "created_at": "2026-05-19T20:04:15"
+  }
+]

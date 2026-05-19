@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'शिक्षक माहिती फॉर्म' if form_type == 'faculty' else 'माजी विद्यार्थी माहिती फॉर्म' }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/portal.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="/" class="brand">
+                <span class="brand-mark"></span>
+                <span>
+                    <h1>{{ 'शिक्षक माहिती' if form_type == 'faculty' else 'माजी विद्यार्थी माहिती' }}</h1>
+                    <p>कै. लक्ष्मणराव पाटील विद्यालय</p>
+                </span>
+            </a>
+            <div class="top-links">
+                <a href="/">मुख्यपृष्ठ</a>
+                <a href="/owner/login">Owner Login</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+
+            <section class="hero-panel">
+                <h2>{{ 'शिक्षक माहिती भरा' if form_type == 'faculty' else 'माजी विद्यार्थी माहिती भरा' }}</h2>
+                <p>हा link owner लोकांना share करू शकतो. फोटो आणि माहिती भरल्यानंतर ती वेबसाइटवर दिसेल; owner नंतर update/delete करू शकतो.</p>
+            </section>
+
+            <form class="form-card" method="post" enctype="multipart/form-data">
+                <div class="field">
+                    <label for="name">पूर्ण नाव</label>
+                    <input id="name" name="name" type="text" required>
+                </div>
+                {% if form_type == 'faculty' %}
+                    <div class="field">
+                        <label for="subject">विषय / विभाग</label>
+                        <input id="subject" name="subject" type="text" required>
+                    </div>
+                {% else %}
+                    <div class="field">
+                        <label for="profession">व्यवसाय / सध्याची ओळख</label>
+                        <input id="profession" name="profession" type="text" required>
+                    </div>
+                {% endif %}
+                <div class="field">
+                    <label for="description">थोडक्यात माहिती</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="field">
+                    <label for="photo">फोटो</label>
+                    <input id="photo" name="photo" type="file" accept="image/*">
+                </div>
+                <button class="btn btn-primary" type="submit">Submit करा</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
