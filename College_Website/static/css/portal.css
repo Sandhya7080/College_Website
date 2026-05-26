@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Hind', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #F5E6CC;
+    background-image: linear-gradient(120deg, rgba(245, 230, 204, 0.98), rgba(242, 215, 182, 0.86), rgba(250, 204, 21, 0.12));
+    color: #4A2C1A;
+}
+
+a {
+    color: #4A2C1A;
+    text-decoration: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.topbar {
+    background: rgba(245, 230, 204, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+    box-shadow: 0 12px 30px rgba(62, 39, 35, 0.06);
+}
+
+.topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: #3E2723;
+    border: 2px solid #FACC15;
+}
+
+.brand h1 {
+    color: #C96A2B;
+    font-size: 1.15rem;
+}
+
+.brand p {
+    color: #7A5C45;
+    font-size: 0.82rem;
+}
+
+.top-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.top-links a:hover {
+    color: #C96A2B;
+}
+
+.page {
+    padding: 70px 0;
+}
+
+.hero-panel,
+.card,
+.form-card,
+.table-card {
+    background: rgba(255, 248, 240, 0.76);
+    border: 1px solid rgba(139, 69, 19, 0.12);
+    border-radius: 22px;
+    box-shadow: 0 12px 28px rgba(62, 39, 35, 0.08);
+}
+
+.hero-panel {
+    padding: 34px;
+    margin-bottom: 32px;
+}
+
+.hero-panel h2,
+.section-title {
+    font-family: 'Tiro Devanagari Marathi', serif;
+    color: #C96A2B;
+    font-size: 2.4rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.hero-panel p,
+.muted {
+    color: #7A5C45;
+    line-height: 1.8;
+}
+
+.actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+}
+
+.btn,
+button.btn {
+    border: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.btn-primary {
+    background: #C96A2B;
+    color: #4A2C1A;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #C96A2B;
+    color: #4A2C1A;
+}
+
+.btn-danger {
+    background: #8B2F1D;
+    color: #FFF8F0;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(201, 106, 43, 0.18);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    padding: 24px;
+}
+
+.card strong {
+    display: block;
+    color: #C96A2B;
+    font-size: 2.2rem;
+}
+
+.form-card {
+    padding: 28px;
+}
+
+.field {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.field label {
+    font-weight: 700;
+    color: #4A2C1A;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    border: 1px solid rgba(139, 69, 19, 0.18);
+    background: rgba(255, 248, 240, 0.86);
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: #4A2C1A;
+    font-size: 1rem;
+}
+
+.field textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.flash {
+    background: rgba(250, 204, 21, 0.18);
+    border: 1px solid rgba(201, 106, 43, 0.25);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    color: #7A3F16;
+}
+
+.table-card {
+    overflow: hidden;
+}
+
+.record {
+    display: grid;
+    grid-template-columns: 86px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 18px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+.record:last-child {
+    border-bottom: 0;
+}
+
+.record img,
+.thumb {
+    width: 86px;
+    height: 70px;
+    border-radius: 14px;
+    object-fit: cover;
+    background: #3E2723;
+}
+
+.record h3 {
+    color: #7B3F00;
+    margin-bottom: 3px;
+}
+
+.record-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.empty {
+    padding: 24px;
+    color: #7A5C45;
+}
+
+@media(max-width: 760px) {
+    .topbar-inner,
+    .record {
+        grid-template-columns: 1fr;
+        display: grid;
+    }
+
+    .record-actions {
+        justify-content: flex-start;
+    }
+
+    .hero-panel h2,
+    .section-title {
+        font-size: 2rem;
+    }
+}

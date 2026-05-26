@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/portal.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="/owner/{{ collection }}" class="brand">
+                <span class="brand-mark"></span>
+                <span>
+                    <h1>माहिती Update</h1>
+                    <p>{{ item.name }}</p>
+                </span>
+            </a>
+            <div class="top-links">
+                <a href="/owner/{{ collection }}">Back</a>
+                <a href="/owner/logout">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container">
+            <form class="form-card" method="post" enctype="multipart/form-data">
+                <div class="field">
+                    <label for="name">नाव</label>
+                    <input id="name" name="name" type="text" value="{{ item.name }}" required>
+                </div>
+                {% if collection == 'faculty' %}
+                    <div class="field">
+                        <label for="subject">विषय / विभाग</label>
+                        <input id="subject" name="subject" type="text" value="{{ item.subject }}" required>
+                    </div>
+                {% elif collection == 'alumni' %}
+                    <div class="field">
+                        <label for="profession">व्यवसाय / ओळख</label>
+                        <input id="profession" name="profession" type="text" value="{{ item.profession }}" required>
+                    </div>
+                {% else %}
+                    <div class="field">
+                        <label for="class_name">इयत्ता / वर्ग</label>
+                        <input id="class_name" name="class_name" type="text" value="{{ item.class_name }}" required>
+                    </div>
+                    <div class="field">
+                        <label for="percentage">टक्केवारी</label>
+                        <input id="percentage" name="percentage" type="text" value="{{ item.percentage }}" required>
+                    </div>
+                    <div class="field">
+                        <label for="rank">क्रमांक / विशेष उल्लेख</label>
+                        <input id="rank" name="rank" type="text" value="{{ item.rank }}" required>
+                    </div>
+                {% endif %}
+                {% if collection != 'scores' %}
+                    <div class="field">
+                        <label for="description">थोडक्यात माहिती</label>
+                        <textarea id="description" name="description" required>{{ item.description }}</textarea>
+                    </div>
+                {% endif %}
+                <div class="field">
+                    <label>सध्याचा फोटो</label>
+                    <img class="thumb" src="{{ item.photo or '/static/images/faculty-1.svg' }}" alt="{{ item.name }}">
+                </div>
+                <div class="field">
+                    <label for="photo">नवीन फोटो upload करा</label>
+                    <input id="photo" name="photo" type="file" accept="image/*">
+                </div>
+                <label class="checkbox-field">
+                    <input type="checkbox" name="visible" {% if item.visible %}checked{% endif %}>
+                    वेबसाइटवर दाखवा
+                </label>
+                <button class="btn btn-primary" type="submit">Update करा</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/portal.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="/" class="brand">
+                <span class="brand-mark"></span>
+                <span>
+                    <h1>Owner Dashboard</h1>
+                    <p>Logged in as {{ owner_username }}</p>
+                </span>
+            </a>
+            <div class="top-links">
+                <a href="/">मुख्यपृष्ठ</a>
+                <a href="/owner/logout">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+
+            <section class="hero-panel">
+                <h2>Website Control</h2>
+                <p>इथून owner शिक्षक आणि माजी विद्यार्थी माहिती add, update, delete करू शकतो. खालील share links लोकांना पाठवून त्यांची माहिती भरून घेता येईल.</p>
+                <div class="actions">
+                    <a class="btn btn-primary" href="/owner/faculty">शिक्षक Manage करा</a>
+                    <a class="btn btn-primary" href="/owner/alumni">माजी विद्यार्थी Manage करा</a>
+                    <a class="btn btn-primary" href="/owner/scores">High Score विद्यार्थी Manage करा</a>
+                </div>
+            </section>
+
+            <div class="grid">
+                <div class="card">
+                    <strong>{{ faculty_items|length }}</strong>
+                    <p>Owner ने जोडलेले शिक्षक</p>
+                    <div class="actions">
+                        <a class="btn btn-secondary" href="/share/faculty">Share Faculty Form</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <strong>{{ alumni_items|length }}</strong>
+                    <p>Owner/Public ने जोडलेले माजी विद्यार्थी</p>
+                    <div class="actions">
+                        <a class="btn btn-secondary" href="/share/alumni">Share Alumni Form</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <strong>{{ score_items|length }}</strong>
+                    <p>Owner ने जोडलेले high score विद्यार्थी</p>
+                    <div class="actions">
+                        <a class="btn btn-secondary" href="/owner/scores">Score Add/Update/Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

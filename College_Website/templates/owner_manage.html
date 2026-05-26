@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if collection == 'faculty' %}शिक्षक{% elif collection == 'alumni' %}माजी विद्यार्थी{% else %}High Score विद्यार्थी{% endif %} Manage
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/portal.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="/owner" class="brand">
+                <span class="brand-mark"></span>
+                <span>
+                    <h1>{% if collection == 'faculty' %}शिक्षक Manage{% elif collection == 'alumni' %}माजी विद्यार्थी Manage{% else %}High Score विद्यार्थी Manage{% endif %}</h1>
+                    <p>Add, update, delete</p>
+                </span>
+            </a>
+            <div class="top-links">
+                <a href="/owner">Dashboard</a>
+                <a href="/owner/logout">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+
+            <section class="hero-panel">
+                <h2>{% if collection == 'faculty' %}नवीन शिक्षक जोडा{% elif collection == 'alumni' %}नवीन माजी विद्यार्थी जोडा{% else %}नवीन high score विद्यार्थी जोडा{% endif %}</h2>
+                <p>{% if collection == 'faculty' %}शिक्षकांची माहिती faculty page वर दिसेल.{% elif collection == 'alumni' %}माजी विद्यार्थ्यांची माहिती home page slider आणि alumni page वर दिसेल.{% else %}High score विद्यार्थ्यांची माहिती home page वर sliding result section मध्ये दिसेल.{% endif %}</p>
+            </section>
+
+            <form class="form-card" method="post" enctype="multipart/form-data">
+                <div class="field">
+                    <label for="name">नाव</label>
+                    <input id="name" name="name" type="text" required>
+                </div>
+                {% if collection == 'faculty' %}
+                    <div class="field">
+                        <label for="subject">विषय / विभाग</label>
+                        <input id="subject" name="subject" type="text" required>
+                    </div>
+                {% elif collection == 'alumni' %}
+                    <div class="field">
+                        <label for="profession">व्यवसाय / ओळख</label>
+                        <input id="profession" name="profession" type="text" required>
+                    </div>
+                {% else %}
+                    <div class="field">
+                        <label for="class_name">इयत्ता / वर्ग</label>
+                        <input id="class_name" name="class_name" type="text" placeholder="इयत्ता १० वी" required>
+                    </div>
+                    <div class="field">
+                        <label for="percentage">टक्केवारी</label>
+                        <input id="percentage" name="percentage" type="text" placeholder="98.20%" required>
+                    </div>
+                    <div class="field">
+                        <label for="rank">क्रमांक / विशेष उल्लेख</label>
+                        <input id="rank" name="rank" type="text" placeholder="विद्यालय प्रथम" required>
+                    </div>
+                {% endif %}
+                {% if collection != 'scores' %}
+                    <div class="field">
+                        <label for="description">थोडक्यात माहिती</label>
+                        <textarea id="description" name="description" required></textarea>
+                    </div>
+                {% endif %}
+                <div class="field">
+                    <label for="photo">फोटो</label>
+                    <input id="photo" name="photo" type="file" accept="image/*">
+                </div>
+                <label class="checkbox-field">
+                    <input type="checkbox" name="visible" checked>
+                    वेबसाइटवर दाखवा
+                </label>
+                <button class="btn btn-primary" type="submit">Add करा</button>
+            </form>
+
+            <section style="margin-top: 34px;">
+                <h2 class="section-title">सध्याची माहिती</h2>
+                <div class="table-card">
+                    {% for item in items %}
+                        <div class="record">
+                            <img src="{{ item.photo or '/static/images/faculty-1.svg' }}" alt="{{ item.name }}">
+                            <div>
+                                <h3>{{ item.name }}</h3>
+                                <p class="muted">
+                                    {% if collection == 'faculty' %}
+                                        {{ item.subject }}
+                                    {% elif collection == 'alumni' %}
+                                        {{ item.profession }}
+                                    {% else %}
+                                        {{ item.class_name }} | {{ item.percentage }} | {{ item.rank }}
+                                    {% endif %}
+                                </p>
+                                <p class="muted">{{ 'दिसत आहे' if item.visible else 'लपवले आहे' }}</p>
+                            </div>
+                            <div class="record-actions">
+                                <a class="btn btn-secondary" href="/owner/{{ collection }}/{{ item.id }}/edit">Update</a>
+                                <form method="post" action="/owner/{{ collection }}/{{ item.id }}/delete">
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="empty">अजून कोणतीही माहिती जोडलेली नाही.</div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

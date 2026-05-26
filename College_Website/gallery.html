@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>गॅलरी | कै. लक्ष्मणराव पाटील विद्यालय</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #F5E6CC;
+            background-image:
+                linear-gradient(120deg, rgba(245, 230, 204, 0.98), rgba(242, 215, 182, 0.86), rgba(250, 204, 21, 0.12));
+            background-size: 180% 180%;
+            color: #4A2C1A;
+            overflow-x: hidden;
+            animation: warmPageShift 14s ease-in-out infinite;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4A2C1A;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(245, 230, 204, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+            box-shadow: 0 12px 30px rgba(62, 39, 35, 0.06);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 55px;
+            height: 55px;
+            background: #3E2723;
+            border-radius: 12px;
+            border: 2px solid #FACC15;
+            animation: logoPulse 3.2s ease-in-out infinite;
+        }
+
+        .college-name h1 {
+            font-size: 1.2rem;
+            color: #C96A2B;
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+
+        .college-name p {
+            font-size: 0.8rem;
+            color: #7A5C45;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            transition: 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #C96A2B;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #C96A2B;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .gallery-main {
+            padding: 155px 0 100px;
+        }
+
+        .page-intro {
+            text-align: center;
+            max-width: 880px;
+            margin: 0 auto 38px;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .page-intro h4 {
+            color: #B85C38;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .page-intro h1,
+        .section-title h2,
+        .memory-card h3 {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+
+        .page-intro h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            color: #4A2C1A;
+        }
+
+        .page-intro h1 span {
+            color: #C96A2B;
+        }
+
+        .page-intro p,
+        .section-title p,
+        .memory-card p,
+        .album-card p {
+            color: #7A5C45;
+            line-height: 1.8;
+        }
+
+        .category-bar {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 46px;
+        }
+
+        .category-pill {
+            border: 1px solid rgba(201, 106, 43, 0.42);
+            background: rgba(255, 248, 240, 0.7);
+            color: #4A2C1A;
+            border-radius: 12px;
+            padding: 11px 18px;
+            font-weight: 600;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .category-pill:hover,
+        .category-pill.active {
+            background: #C96A2B;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(201, 106, 43, 0.18);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 26px;
+            margin-bottom: 70px;
+        }
+
+        .memory-card,
+        .album-card {
+            background: rgba(255, 248, 240, 0.75);
+            border: 1px solid rgba(139, 69, 19, 0.12);
+            border-radius: 22px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 22px rgba(62, 39, 35, 0.06);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .memory-card:hover,
+        .album-card:hover {
+            transform: translateY(-7px);
+            border-color: #C96A2B;
+            box-shadow: 0 14px 30px rgba(201, 106, 43, 0.14);
+        }
+
+        .feature-photo,
+        .album-photo {
+            background: #3E2723;
+            border-radius: 20px;
+            border: 2px solid rgba(139, 69, 19, 0.15);
+            color: #FACC15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-photo {
+            min-height: 390px;
+            margin-bottom: 22px;
+            font-size: 1.2rem;
+        }
+
+        .album-photo {
+            min-height: 185px;
+            margin-bottom: 18px;
+        }
+
+        .feature-photo::after,
+        .album-photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 20%, rgba(250, 204, 21, 0.16) 45%, transparent 70%);
+            transform: translateX(-100%);
+            animation: warmShine 5.5s ease-in-out infinite;
+        }
+
+        .memory-card h3 {
+            color: #C96A2B;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .album-stack {
+            display: grid;
+            gap: 24px;
+        }
+
+        .album-card h3 {
+            color: #7B3F00;
+            margin-bottom: 8px;
+            font-size: 1.25rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .section-title h2 {
+            font-size: 2.7rem;
+            margin-bottom: 15px;
+            color: #4A2C1A;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-item {
+            background: rgba(255, 248, 240, 0.72);
+            border: 1px solid rgba(139, 69, 19, 0.12);
+            border-radius: 22px;
+            overflow: hidden;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-7px);
+            border-color: #C96A2B;
+            box-shadow: 0 14px 30px rgba(201, 106, 43, 0.14);
+        }
+
+        .gallery-image {
+            min-height: 230px;
+            background: #3E2723;
+            color: #FACC15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 20%, rgba(250, 204, 21, 0.16) 45%, transparent 70%);
+            transform: translateX(-100%);
+            animation: warmShine 6.5s ease-in-out infinite;
+        }
+
+        .gallery-caption {
+            padding: 20px;
+        }
+
+        .gallery-caption h3 {
+            color: #7B3F00;
+            margin-bottom: 8px;
+        }
+
+        .gallery-caption p {
+            color: #7A5C45;
+            line-height: 1.65;
+            font-size: 0.96rem;
+        }
+
+        footer {
+            background: #E8D0B3;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: #4A2C1A;
+        }
+
+        footer p {
+            color: #7A5C45;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a:hover {
+            color: #C96A2B;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            color: #7A5C45;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes warmShine {
+
+            0%,
+            45% {
+                transform: translateX(-110%);
+            }
+
+            75%,
+            100% {
+                transform: translateX(110%);
+            }
+        }
+
+        @keyframes logoPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(201, 106, 43, 0.28);
+            }
+
+            50% {
+                box-shadow: 0 0 0 9px rgba(201, 106, 43, 0);
+            }
+        }
+
+        @keyframes warmPageShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @media(max-width: 992px) {
+            nav {
+                position: absolute;
+                top: 90px;
+                right: 0;
+                width: 100%;
+                background: #F2D7B6;
+                flex-direction: column;
+                padding: 30px;
+                display: none;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .featured-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-intro h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .gallery-main {
+                padding-top: 135px;
+            }
+
+            .page-intro h1,
+            .section-title h2 {
+                font-size: 2.15rem;
+            }
+
+            .feature-photo {
+                min-height: 280px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="/" class="logo">
+                <div class="logo-box"></div>
+                <div class="college-name">
+                    <h1>कै. लक्ष्मणराव पाटील विद्यालय</h1>
+                    <p>माझी शाळा माझा अभिमान</p>
+                </div>
+            </a>
+
+            <nav id="navMenu">
+                <a href="/">मुख्यपृष्ठ</a>
+                <a href="/#about">विद्यालय</a>
+                <a href="/#admission">प्रवेश</a>
+                <a href="/#facilities">सुविधा</a>
+                <a href="/#results">निकाल</a>
+                <a href="/#alumni">माजी विद्यार्थी</a>
+                <a href="/#teachers">शिक्षकवर्ग</a>
+                <a href="/gallery" class="active">गॅलरी</a>
+                <a href="/contact">संपर्क</a>
+            </nav>
+
+            <div class="menu-btn" id="menuBtn">☰</div>
+        </div>
+    </header>
+
+    <main class="gallery-main">
+        <div class="container">
+            <div class="page-intro">
+                
+                <h1><span>गॅलरी</span></h1>
+                <p>
+                    विद्यालयातील सांस्कृतिक कार्यक्रम, क्रीडा स्पर्धा, शैक्षणिक उपक्रम आणि विद्यार्थ्यांच्या
+                    यशाचे क्षण येथे जतन केले आहेत.
+                </p>
+            </div>
+
+            <div class="category-bar">
+                <a class="category-pill active" href="#all">सर्व फोटो</a>
+                <a class="category-pill" href="#events">कार्यक्रम</a>
+                <a class="category-pill" href="#sports">क्रीडा</a>
+                <a class="category-pill" href="#classroom">वर्ग उपक्रम</a>
+                <a class="category-pill" href="#celebration">उत्सव</a>
+            </div>
+
+            <div class="featured-grid">
+                <article class="memory-card">
+                    <div class="feature-photo">विद्यालय मुख्य कार्यक्रम छायाचित्र</div>
+                    <h3>आठवणींचा प्रवास</h3>
+                    <p>
+                        विद्यार्थ्यांच्या सर्वांगीण विकासासाठी होणारे उपक्रम, स्पर्धा, स्नेहसंमेलन आणि
+                        शैक्षणिक क्षण विद्यालयाच्या संस्कारमय वातावरणाची ओळख करून देतात.
+                    </p>
+                </article>
+
+                <div class="album-stack">
+                    <article class="album-card">
+                        <div class="album-photo">सांस्कृतिक कार्यक्रम</div>
+                        <h3>कला आणि संस्कार</h3>
+                        <p>नृत्य, गीत, भाषण आणि पारंपरिक सादरीकरणांचे निवडक क्षण.</p>
+                    </article>
+
+                    <article class="album-card">
+                        <div class="album-photo">क्रीडा स्पर्धा</div>
+                        <h3>शक्ती आणि शिस्त</h3>
+                        <p>मैदानी स्पर्धा, संघभावना आणि विद्यार्थ्यांच्या उत्साहाचे छायाचित्र संग्रह.</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="section-title" id="all">
+                <h2>छायाचित्र संग्रह</h2>
+                <p>खालील जागी विद्यालयाचे खरे फोटो जोडल्यावर गॅलरी अधिक जिवंत दिसेल.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <article class="gallery-item" id="events">
+                    <div class="gallery-image">वार्षिक स्नेहसंमेलन</div>
+                    <div class="gallery-caption">
+                        <h3>स्नेहसंमेलन</h3>
+                        <p>विद्यार्थ्यांच्या कलागुणांना वाव देणारा वार्षिक सांस्कृतिक कार्यक्रम.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item" id="sports">
+                    <div class="gallery-image">क्रीडा दिन</div>
+                    <div class="gallery-caption">
+                        <h3>क्रीडा दिन</h3>
+                        <p>धावणे, कबड्डी, क्रिकेट आणि संघभावना वाढवणारे मैदानी उपक्रम.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item" id="classroom">
+                    <div class="gallery-image">वर्गातील उपक्रम</div>
+                    <div class="gallery-caption">
+                        <h3>शैक्षणिक उपक्रम</h3>
+                        <p>प्रयोग, वाचन, गटचर्चा आणि प्रत्यक्ष अनुभवातून शिकण्याचे क्षण.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item" id="celebration">
+                    <div class="gallery-image">राष्ट्रीय उत्सव</div>
+                    <div class="gallery-caption">
+                        <h3>उत्सव आणि संस्कार</h3>
+                        <p>स्वातंत्र्य दिन, प्रजासत्ताक दिन आणि पारंपरिक कार्यक्रमांचे स्मरणीय क्षण.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item">
+                    <div class="gallery-image">पुरस्कार वितरण</div>
+                    <div class="gallery-caption">
+                        <h3>विद्यार्थी गौरव</h3>
+                        <p>निकाल, स्पर्धा आणि विशेष कामगिरीसाठी विद्यार्थ्यांचा सन्मान.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item">
+                    <div class="gallery-image">स्वच्छता उपक्रम</div>
+                    <div class="gallery-caption">
+                        <h3>सामाजिक उपक्रम</h3>
+                        <p>स्वच्छता, वृक्षारोपण आणि समाजाभिमुख उपक्रमांमधील सहभाग.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>कै. लक्ष्मणराव पाटील विद्यालय</h3>
+                    <br>
+                    <p>
+                        आधुनिक शिक्षण, नवकल्पना आणि सांस्कृतिक मूल्यांच्या माध्यमातून विद्यार्थ्यांना सक्षम करणारे विद्यालय.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>जलद दुवे</h3>
+                    <br>
+                    <div class="footer-links">
+                        <a href="/">मुख्यपृष्ठ</a>
+                        <a href="/#facilities">सुविधा</a>
+                        <a href="/#results">निकाल</a>
+                        <a href="/gallery">गॅलरी</a>
+                        <a href="/contact">संपर्क</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>संपर्क</h3>
+                    <br>
+                    <p>ई-मेल: info@college.com</p>
+                    <p>दूरध्वनी: +91 9876543210</p>
+                    <p>महाराष्ट्र, भारत</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2026 कै. लक्ष्मणराव पाटील विद्यालय | माझी शाळा माझा अभिमान
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        const revealItems = document.querySelectorAll(
+            '.page-intro, .category-pill, .memory-card, .album-card, .section-title, .gallery-item, footer .footer-grid > div'
+        );
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        revealItems.forEach((item, index) => {
+            item.classList.add('reveal');
+            item.style.transitionDelay = `${Math.min(index % 4, 3) * 90}ms`;
+            revealObserver.observe(item);
+        });
+    </script>
+</body>
+
+</html>

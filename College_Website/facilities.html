@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>सुविधा | कै. लक्ष्मणराव पाटील विद्यालय</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #F5E6CC;
+            background-image:
+                linear-gradient(120deg, rgba(245, 230, 204, 0.98), rgba(242, 215, 182, 0.86), rgba(250, 204, 21, 0.12));
+            background-size: 180% 180%;
+            color: #4A2C1A;
+            overflow-x: hidden;
+            animation: warmPageShift 14s ease-in-out infinite;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4A2C1A;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(245, 230, 204, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+            box-shadow: 0 12px 30px rgba(62, 39, 35, 0.06);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 55px;
+            height: 55px;
+            background: #3E2723;
+            border-radius: 12px;
+            border: 2px solid #FACC15;
+            animation: logoPulse 3.2s ease-in-out infinite;
+        }
+
+        .college-name h1 {
+            font-size: 1.2rem;
+            color: #C96A2B;
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+
+        .college-name p {
+            font-size: 0.8rem;
+            color: #7A5C45;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            transition: 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #C96A2B;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #C96A2B;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .facilities-main {
+            padding: 155px 0 100px;
+        }
+
+        .page-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 42px;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .page-intro h4 {
+            color: #B85C38;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .page-intro h1,
+        .section-title h2,
+        .highlight-card h2 {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+
+        .page-intro h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            color: #4A2C1A;
+        }
+
+        .page-intro h1 span {
+            color: #C96A2B;
+        }
+
+        .page-intro p,
+        .section-title p,
+        .highlight-card p,
+        .facility-card p,
+        .support-card p {
+            color: #7A5C45;
+            line-height: 1.8;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            margin-bottom: 70px;
+        }
+
+        .highlight-card,
+        .facility-card,
+        .support-card {
+            background: rgba(255, 248, 240, 0.75);
+            border: 1px solid rgba(139, 69, 19, 0.12);
+            border-radius: 22px;
+            padding: 26px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 22px rgba(62, 39, 35, 0.06);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .highlight-card:hover,
+        .facility-card:hover,
+        .support-card:hover {
+            transform: translateY(-7px);
+            border-color: #C96A2B;
+            box-shadow: 0 14px 30px rgba(201, 106, 43, 0.14);
+        }
+
+        .highlight-visual {
+            min-height: 330px;
+            background: #3E2723;
+            border-radius: 20px;
+            border: 2px solid rgba(139, 69, 19, 0.15);
+            color: #FACC15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 20%, rgba(250, 204, 21, 0.16) 45%, transparent 70%);
+            transform: translateX(-100%);
+            animation: warmShine 5.5s ease-in-out infinite;
+        }
+
+        .highlight-card h2 {
+            color: #C96A2B;
+            font-size: 2.1rem;
+            margin-bottom: 12px;
+        }
+
+        .quick-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .quick-item {
+            display: grid;
+            grid-template-columns: 54px 1fr;
+            gap: 16px;
+            align-items: start;
+            background: rgba(245, 230, 204, 0.55);
+            border: 1px solid rgba(139, 69, 19, 0.12);
+            border-radius: 18px;
+            padding: 18px;
+        }
+
+        .quick-icon,
+        .facility-icon,
+        .support-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 17px;
+            background: #3E2723;
+            color: #FACC15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .quick-item h3,
+        .facility-card h3,
+        .support-card h3 {
+            color: #7B3F00;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .section-title h2 {
+            font-size: 2.7rem;
+            margin-bottom: 15px;
+            color: #4A2C1A;
+        }
+
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 70px;
+        }
+
+        .facility-card {
+            min-height: 295px;
+        }
+
+        .facility-icon {
+            margin-bottom: 20px;
+        }
+
+        .facility-card h3 {
+            font-size: 1.28rem;
+        }
+
+        .support-band {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .support-card {
+            padding: 24px;
+        }
+
+        .support-icon {
+            margin-bottom: 18px;
+        }
+
+        footer {
+            background: #E8D0B3;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: #4A2C1A;
+        }
+
+        footer p {
+            color: #7A5C45;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a:hover {
+            color: #C96A2B;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            color: #7A5C45;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes warmShine {
+
+            0%,
+            45% {
+                transform: translateX(-110%);
+            }
+
+            75%,
+            100% {
+                transform: translateX(110%);
+            }
+        }
+
+        @keyframes logoPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(201, 106, 43, 0.28);
+            }
+
+            50% {
+                box-shadow: 0 0 0 9px rgba(201, 106, 43, 0);
+            }
+        }
+
+        @keyframes warmPageShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @media(max-width: 992px) {
+            nav {
+                position: absolute;
+                top: 90px;
+                right: 0;
+                width: 100%;
+                background: #F2D7B6;
+                flex-direction: column;
+                padding: 30px;
+                display: none;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .highlight-grid,
+            .facility-grid,
+            .support-band {
+                grid-template-columns: 1fr;
+            }
+
+            .page-intro h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .facilities-main {
+                padding-top: 135px;
+            }
+
+            .page-intro h1,
+            .section-title h2 {
+                font-size: 2.15rem;
+            }
+
+            .highlight-visual {
+                min-height: 260px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="/" class="logo">
+                <div class="logo-box"></div>
+                <div class="college-name">
+                    <h1>कै. लक्ष्मणराव पाटील विद्यालय</h1>
+                    <p>माझी शाळा माझा अभिमान</p>
+                </div>
+            </a>
+
+            <nav id="navMenu">
+                <a href="/">मुख्यपृष्ठ</a>
+                <a href="/#about">विद्यालय</a>
+                <a href="/#admission">प्रवेश</a>
+                <a href="/facilities" class="active">सुविधा</a>
+                <a href="/#results">निकाल</a>
+                <a href="/#alumni">माजी विद्यार्थी</a>
+                <a href="/#teachers">शिक्षकवर्ग</a>
+                <a href="/gallery">गॅलरी</a>
+                <a href="/contact">संपर्क</a>
+            </nav>
+
+            <div class="menu-btn" id="menuBtn">☰</div>
+        </div>
+    </header>
+
+    <main class="facilities-main">
+        <div class="container">
+            <div class="page-intro">
+               
+                <h1><span>सुविधा</span> </h1>
+                <p>
+                    विद्यार्थ्यांच्या शिक्षणासोबत आरोग्य, क्रीडा, डिजिटल कौशल्ये आणि संस्कारक्षम वातावरण
+                    यासाठी विद्यालयात आवश्यक सुविधा उपलब्ध करून दिल्या जातात.
+                </p>
+            </div>
+
+            <div class="highlight-grid">
+                <article class="highlight-card">
+                    <div class="highlight-visual">आरोग्य, शिक्षण आणि कौशल्य विकासासाठी सुविधा</div>
+                    <h2>सर्वांगीण विकासासाठी आधार</h2>
+                    <p>
+                        कै. लक्ष्मणराव पाटील विद्यालयात विद्यार्थ्यांना केवळ पाठ्यपुस्तकांचे शिक्षण नव्हे,
+                        तर खेळ, संगणक शिक्षण, पौष्टिक आहार, वाचन आणि शिस्तबद्ध दिनक्रम यांचा संतुलित अनुभव मिळतो.
+                    </p>
+                </article>
+
+                <div class="quick-list">
+                    <div class="quick-item">
+                        <div class="quick-icon">01</div>
+                        <div>
+                            <h3>खेळाचे मैदान</h3>
+                            <p>दररोजच्या सरावासाठी आणि शालेय स्पर्धांसाठी प्रशस्त मैदान.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-item">
+                        <div class="quick-icon">02</div>
+                        <div>
+                            <h3>एक वेळ भोजन</h3>
+                            <p>स्वच्छता राखून विद्यार्थ्यांना संतुलित आणि पौष्टिक आहार.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-item">
+                        <div class="quick-icon">03</div>
+                        <div>
+                            <h3>MS-CIT मार्गदर्शन</h3>
+                            <p>डिजिटल साक्षरता, संगणक वापर आणि ऑनलाइन कौशल्यांसाठी मार्गदर्शन.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2>मुख्य सुविधा</h2>
+                <p>विद्यार्थ्यांच्या शारीरिक, बौद्धिक आणि तांत्रिक विकासासाठी तयार केलेल्या सुविधा.</p>
+            </div>
+
+            <div class="facility-grid">
+                <article class="facility-card">
+                    <div class="facility-icon">मैदान</div>
+                    <h3>खेळाचे मैदान</h3>
+                    <p>
+                        क्रिकेट, कबड्डी, धावणे आणि इतर खेळांसाठी प्रशस्त क्रीडांगण उपलब्ध आहे.
+                        यामुळे विद्यार्थ्यांमध्ये शिस्त, आत्मविश्वास आणि संघभावना वाढते.
+                    </p>
+                </article>
+
+                <article class="facility-card">
+                    <div class="facility-icon">आहार</div>
+                    <h3>एक वेळ पौष्टिक भोजन</h3>
+                    <p>
+                        विद्यार्थ्यांच्या आरोग्यासाठी स्वच्छ, ताजे आणि पौष्टिक भोजन दिले जाते.
+                        नियमित आहारामुळे अभ्यासातील लक्ष, ऊर्जा आणि उपस्थिती सुधारण्यास मदत होते.
+                    </p>
+                </article>
+
+                <article class="facility-card">
+                    <div class="facility-icon">MS</div>
+                    <h3>MS-CIT कोर्स</h3>
+                    <p>
+                        शाळेतून विद्यार्थ्यांना संगणक साक्षरतेसाठी MS-CIT संबंधित मार्गदर्शन दिले जाते.
+                        टायपिंग, इंटरनेट, ऑफिस टूल्स आणि डिजिटल व्यवहारांची ओळख करून दिली जाते.
+                    </p>
+                </article>
+
+                <article class="facility-card">
+                    <div class="facility-icon">लॅब</div>
+                    <h3>संगणक प्रयोगशाळा</h3>
+                    <p>
+                        संगणक प्रयोगशाळेत विद्यार्थ्यांना प्रत्यक्ष सरावाची संधी मिळते.
+                        डिजिटल शिक्षण आणि आधुनिक तंत्रज्ञानाशी परिचय करून दिला जातो.
+                    </p>
+                </article>
+
+                <article class="facility-card">
+                    <div class="facility-icon">वाचन</div>
+                    <h3>वाचनालय</h3>
+                    <p>
+                        अभ्यासक्रम, संदर्भ पुस्तके, प्रेरणादायी साहित्य आणि वाचनाची सवय वाढवण्यासाठी
+                        शांत वाचनालयीन वातावरण उपलब्ध आहे.
+                    </p>
+                </article>
+
+                <article class="facility-card">
+                    <div class="facility-icon">वर्ग</div>
+                    <h3>सुसज्ज वर्गखोल्या</h3>
+                    <p>
+                        स्वच्छ, हवेशीर आणि अभ्यासासाठी योग्य वर्गखोल्या विद्यार्थ्यांना एकाग्रतेने
+                        शिकण्यासाठी मदत करतात.
+                    </p>
+                </article>
+            </div>
+
+            <div class="section-title">
+                <h2>अधिक विद्यार्थी सहाय्य</h2>
+                <p>विद्यालयाच्या संस्कारक्षम वातावरणाशी जुळणाऱ्या पूरक सुविधा.</p>
+            </div>
+
+            <div class="support-band">
+                <article class="support-card">
+                    <div class="support-icon">शिस्त</div>
+                    <h3>शिस्त आणि संस्कार</h3>
+                    <p>दैनंदिन प्रार्थना, वेळेचे पालन आणि मूल्याधारित उपक्रमांद्वारे संस्कारांवर भर.</p>
+                </article>
+
+                <article class="support-card">
+                    <div class="support-icon">आरोग्य</div>
+                    <h3>आरोग्य जागरूकता</h3>
+                    <p>स्वच्छता, पोषण, पिण्याचे पाणी आणि आरोग्यदायी सवयींबद्दल नियमित मार्गदर्शन.</p>
+                </article>
+
+                <article class="support-card">
+                    <div class="support-icon">मार्ग</div>
+                    <h3>करिअर मार्गदर्शन</h3>
+                    <p>उच्च शिक्षण, डिजिटल कौशल्ये, स्पर्धा परीक्षा आणि भविष्यातील संधींबद्दल दिशादर्शन.</p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>कै. लक्ष्मणराव पाटील विद्यालय</h3>
+                    <br>
+                    <p>
+                        आधुनिक शिक्षण, नवकल्पना आणि सांस्कृतिक मूल्यांच्या माध्यमातून विद्यार्थ्यांना सक्षम करणारे विद्यालय.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>जलद दुवे</h3>
+                    <br>
+                    <div class="footer-links">
+                        <a href="/">मुख्यपृष्ठ</a>
+                        <a href="/facilities">सुविधा</a>
+                        <a href="/#results">निकाल</a>
+                        <a href="/gallery">गॅलरी</a>
+                        <a href="/contact">संपर्क</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>संपर्क</h3>
+                    <br>
+                    <p>ई-मेल: info@college.com</p>
+                    <p>दूरध्वनी: +91 9876543210</p>
+                    <p>महाराष्ट्र, भारत</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2026 कै. लक्ष्मणराव पाटील विद्यालय | माझी शाळा माझा अभिमान
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        const revealItems = document.querySelectorAll(
+            '.page-intro, .highlight-card, .quick-item, .section-title, .facility-card, .support-card, footer .footer-grid > div'
+        );
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        revealItems.forEach((item, index) => {
+            item.classList.add('reveal');
+            item.style.transitionDelay = `${Math.min(index % 4, 3) * 90}ms`;
+            revealObserver.observe(item);
+        });
+    </script>
+</body>
+
+</html>
